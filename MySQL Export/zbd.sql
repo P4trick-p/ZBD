@@ -82,7 +82,7 @@ CREATE TABLE `komentatorzy` (
 --
 
 INSERT INTO `komentatorzy` (`id_komentatorzy`, `imie`, `nazwisko`) VALUES
-(1, 'Michał', 'Szeller');
+(1, 'Michael', 'Sheller');
 
 -- --------------------------------------------------------
 
