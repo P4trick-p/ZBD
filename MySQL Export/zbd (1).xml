@@ -169,8 +169,8 @@
         <!-- Tabela komentatorzy -->
         <table name="komentatorzy">
             <column name="id_komentatorzy">1</column>
-            <column name="imie">Michał</column>
-            <column name="nazwisko">Szeller</column>
+            <column name="imie">Michael</column>
+            <column name="nazwisko">Sheller</column>
         </table>
         <!-- Tabela komentatorzy_turn -->
         <table name="komentatorzy_turn">
