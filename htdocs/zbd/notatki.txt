@@ -1,0 +1,43 @@
+SELECT * FROM turnieje;
+
+SELECT zawodnicy.id_zawodnicy, zawodnicy.imie, zawodnicy.nazwisko, zawodnicy.klub, zawodnicy.opis 
+FROM zawodnicy, zawodnicy_turn, turniej 
+WHERE zawodnicy.id_zawodnicy = zawodnicy_turn.id_zawodnicy AND zawodnicy_turn.id_turniej = turniej.id_turniej
+
+SELECT * FROM zbd.adres ORDER BY id_adres DESC LIMIT 1;
+
+ALTER TABLE adres AUTO_INCREMENT = 3;
+
+SELECT * FROM zawodnicy ORDER BY nazwisko
+MINUS
+SELECT zawodnicy.id_zawodnicy, zawodnicy.imie, zawodnicy.nazwisko, zawodnicy_turn.id_turniej, zawodnicy_turn.id_zawodnicy 
+FROM zawodnicy, zawodnicy_turn 
+WHERE zawodnicy_turn.id_zawodnicy=zawodnicy.id_zawodnicy 
+ORDER BY nazwisko
+
+SELECT * FROM zawodnicy 
+WHERE NOT EXISTS
+(SELECT zawodnicy.id_zawodnicy, zawodnicy.imie, zawodnicy.nazwisko, zawodnicy_turn.id_turniej, zawodnicy_turn.id_zawodnicy
+FROM zawodnicy, zawodnicy_turn 
+WHERE zawodnicy_turn.id_zawodnicy=zawodnicy.id_zawodnicy 
+ORDER BY nazwisko);
+
+Ranking 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+SELECT zawodnicy.id_zawodnicy, zawodnicy.imie, zawodnicy.nazwisko, zawodnicy.klub, zawodnicy_turn.punkty, zawodnicy.id_dyscyplina, turniej.id_turniej
+FROM zawodnicy, zawodnicy_turn, turniej WHERE zawodnicy.id_dyscyplina=1 
+AND zawodnicy_turn.id_zawodnicy=zawodnicy.id_zawodnicy 
+AND turniej.id_dyscyplina=1
+AND turniej.id_turniej=zawodnicy_turn.id_turniej
+ORDER BY zawodnicy.id_zawodnicy DESC
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+SELECT zawodnicy.id_zawodnicy, zawodnicy.imie, zawodnicy.nazwisko, zawodnicy.klub, zawodnicy_turn.punkty, zawodnicy.id_dyscyplina, turniej.id_turniej
+FROM zawodnicy, zawodnicy_turn, turniej WHERE zawodnicy.id_dyscyplina=1 
+AND zawodnicy_turn.id_zawodnicy=zawodnicy.id_zawodnicy 
+AND turniej.id_dyscyplina=1
+AND turniej.id_turniej=zawodnicy_turn.id_turniej
+ORDER BY zawodnicy.id_zawodnicy ASC
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+

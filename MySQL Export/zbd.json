@@ -1,0 +1,97 @@
+[
+{"type":"header","version":"5.0.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"zbd"},
+{"type":"table","name":"adres","database":"zbd","data":
+[
+{"id_adres":"1","kraj":"Polska","miasto":"Prudnik","kod_pocztowy":"48-200","ulica":"ul. Łucznicza 1"},
+{"id_adres":"2","kraj":"Polska","miasto":"Wrocław","kod_pocztowy":"50-123","ulica":"Politechniczna 1\/1"},
+{"id_adres":"3","kraj":"Polska","miasto":"Prudnik","kod_pocztowy":"48-200","ulica":"ul. Łucznicza 1"},
+{"id_adres":"4","kraj":"Krajowo","miasto":"Miastewko","kod_pocztowy":"40-200","ulica":"Uliczna"},
+{"id_adres":"5","kraj":"Polska","miasto":"Koniec Drogi","kod_pocztowy":"42-500","ulica":"Miodowa"}
+]
+}
+,{"type":"table","name":"dyscyplina","database":"zbd","data":
+[
+{"id_dyscyplina":"1","dyscyplina":"Szachy"},
+{"id_dyscyplina":"2","dyscyplina":"Go"}
+]
+}
+,{"type":"table","name":"komentatorzy","database":"zbd","data":
+[
+{"id_komentatorzy":"1","imie":"Michał","nazwisko":"Szeller"}
+]
+}
+,{"type":"table","name":"komentatorzy_turn","database":"zbd","data":
+[
+{"id_turniej":"1","id_komentatorzy":"1"}
+]
+}
+,{"type":"table","name":"organizatorzy","database":"zbd","data":
+[
+{"id_organizatorzy":"1","id_adres":"1","nazwa":"KS Obuwnik","email":"email@mail.com","telefon":"123456789"}
+]
+}
+,{"type":"table","name":"organizatorzy_turn","database":"zbd","data":
+[
+{"id_turniej":"1","id_organizatorzy":"1"}
+]
+}
+,{"type":"table","name":"ranking","database":"zbd","data":
+[
+{"id":"1","id_dyscyplina":"1","id_zawodnik":"1","punkty":"6"},
+{"id":"2","id_dyscyplina":"2","id_zawodnik":"2","punkty":"9"},
+{"id":"3","id_dyscyplina":"1","id_zawodnik":"3","punkty":"2"},
+{"id":"4","id_dyscyplina":"1","id_zawodnik":"4","punkty":"11"},
+{"id":"5","id_dyscyplina":"2","id_zawodnik":"5","punkty":"5"},
+{"id":"6","id_dyscyplina":"2","id_zawodnik":"6","punkty":"1"},
+{"id":"7","id_dyscyplina":"2","id_zawodnik":"7","punkty":"13"},
+{"id":"8","id_dyscyplina":"2","id_zawodnik":"8","punkty":"0"},
+{"id":"9","id_dyscyplina":"2","id_zawodnik":"9","punkty":"12"},
+{"id":"10","id_dyscyplina":"1","id_zawodnik":"10","punkty":"0"}
+]
+}
+,{"type":"table","name":"turniej","database":"zbd","data":
+[
+{"id_turniej":"1","nazwa":"Turniej w Szachy","data":"2020-11-20 14:00:00","id_adres":"1","id_dyscyplina":"1","opis":"opis","zasady":"zasady","transmisja":"Nie","wpisowe":"0"},
+{"id_turniej":"2","nazwa":"Turniej w Go","data":"2020-11-25 12:30:00","id_adres":"2","id_dyscyplina":"2","opis":"opis","zasady":"zasady","transmisja":"Nie","wpisowe":"0"},
+{"id_turniej":"3","nazwa":"II Turniej w Szachy","data":"2020-11-28 20:15:00","id_adres":"4","id_dyscyplina":"1","opis":"Opis","zasady":"Zasady","transmisja":"Tak","wpisowe":"5"},
+{"id_turniej":"4","nazwa":"II Turniej w GO","data":"2021-03-05 20:40:00","id_adres":"5","id_dyscyplina":"2","opis":"Opis","zasady":"Zasady","transmisja":"Nie","wpisowe":"15"}
+]
+}
+,{"type":"table","name":"uzytkownicy","database":"zbd","data":
+[
+{"id":"1","user":"patrick","pass":"12345"}
+]
+}
+,{"type":"table","name":"zawodnicy","database":"zbd","data":
+[
+{"id_zawodnicy":"1","id_dyscyplina":"1","imie":"Aleksander ","nazwisko":"Piaseczny","klub":"Giants","opis":"OPIS"},
+{"id_zawodnicy":"2","id_dyscyplina":"2","imie":"Hubert ","nazwisko":"Jach","klub":"Giants","opis":"OPIS"},
+{"id_zawodnicy":"3","id_dyscyplina":"1","imie":"Krzysztof","nazwisko":"Hymon","klub":"Enigmas","opis":"OPIS"},
+{"id_zawodnicy":"4","id_dyscyplina":"1","imie":"Królik","nazwisko":"Królikowski","klub":"Trolls","opis":"OPIS"},
+{"id_zawodnicy":"5","id_dyscyplina":"2","imie":"Szymon","nazwisko":"Bóbr","klub":"Enigmas","opis":"OPIS"},
+{"id_zawodnicy":"6","id_dyscyplina":"2","imie":"Walter ","nazwisko":"Laskoski","klub":"The Terrors","opis":"OPIS"},
+{"id_zawodnicy":"7","id_dyscyplina":"2","imie":"Chwalibóg ","nazwisko":"Graczyk","klub":"Yetis","opis":"OPIS"},
+{"id_zawodnicy":"8","id_dyscyplina":"2","imie":"Lesław ","nazwisko":"Skop","klub":"Monsters","opis":"OPIS"},
+{"id_zawodnicy":"9","id_dyscyplina":"2","imie":"Florentyn ","nazwisko":"Osiecki","klub":"Gnomes","opis":"OPIS"},
+{"id_zawodnicy":"10","id_dyscyplina":"1","imie":"Bolesław ","nazwisko":"Bochenek","klub":"Stars","opis":"OPIS"}
+]
+}
+,{"type":"table","name":"zawodnicy_turn","database":"zbd","data":
+[
+{"id":"1","id_turniej":"3","id_zawodnicy":"1","punkty":"3"},
+{"id":"2","id_turniej":"1","id_zawodnicy":"1","punkty":"3"},
+{"id":"3","id_turniej":"3","id_zawodnicy":"3","punkty":"1"},
+{"id":"4","id_turniej":"3","id_zawodnicy":"4","punkty":"4"},
+{"id":"5","id_turniej":"4","id_zawodnicy":"7","punkty":"12"},
+{"id":"6","id_turniej":"4","id_zawodnicy":"9","punkty":"9"},
+{"id":"7","id_turniej":"2","id_zawodnicy":"5","punkty":"5"},
+{"id":"8","id_turniej":"2","id_zawodnicy":"9","punkty":"3"},
+{"id":"9","id_turniej":"1","id_zawodnicy":"4","punkty":"7"},
+{"id":"10","id_turniej":"2","id_zawodnicy":"2","punkty":"9"},
+{"id":"11","id_turniej":"1","id_zawodnicy":"3","punkty":"1"},
+{"id":"12","id_turniej":"4","id_zawodnicy":"6","punkty":"1"},
+{"id":"13","id_turniej":"2","id_zawodnicy":"7","punkty":"1"}
+]
+}
+]

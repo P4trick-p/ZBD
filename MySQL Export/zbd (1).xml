@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.0.3
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Czas generowania: 26 Lis 2020, 18:57
+- Wersja serwera: 10.4.14-MariaDB
+- Wersja PHP: 7.2.34
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="zbd" collation="utf8mb4_polish_ci" charset="utf8mb4">
+            <pma:table name="adres">
+                CREATE TABLE `adres` (
+                  `id_adres` int(11) NOT NULL AUTO_INCREMENT,
+                  `kraj` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `miasto` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `kod_pocztowy` varchar(10) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `ulica` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  PRIMARY KEY (`id_adres`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="dyscyplina">
+                CREATE TABLE `dyscyplina` (
+                  `id_dyscyplina` int(11) NOT NULL AUTO_INCREMENT,
+                  `dyscyplina` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  PRIMARY KEY (`id_dyscyplina`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="komentatorzy">
+                CREATE TABLE `komentatorzy` (
+                  `id_komentatorzy` int(11) NOT NULL AUTO_INCREMENT,
+                  `imie` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `nazwisko` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+                  PRIMARY KEY (`id_komentatorzy`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="komentatorzy_turn">
+                CREATE TABLE `komentatorzy_turn` (
+                  `id_turniej` int(11) NOT NULL,
+                  `id_komentatorzy` int(11) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="organizatorzy">
+                CREATE TABLE `organizatorzy` (
+                  `id_organizatorzy` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_adres` int(11) NOT NULL,
+                  `nazwa` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `email` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `telefon` int(11) NOT NULL,
+                  PRIMARY KEY (`id_organizatorzy`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="organizatorzy_turn">
+                CREATE TABLE `organizatorzy_turn` (
+                  `id_turniej` int(11) NOT NULL,
+                  `id_organizatorzy` int(11) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="ranking">
+                CREATE TABLE `ranking` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_dyscyplina` int(11) NOT NULL,
+                  `id_zawodnik` int(11) NOT NULL,
+                  `punkty` int(11) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="turniej">
+                CREATE TABLE `turniej` (
+                  `id_turniej` int(11) NOT NULL AUTO_INCREMENT,
+                  `nazwa` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `data` datetime NOT NULL,
+                  `id_adres` int(11) NOT NULL,
+                  `id_dyscyplina` int(11) NOT NULL,
+                  `opis` varchar(250) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `zasady` varchar(250) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `transmisja` varchar(3) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `wpisowe` int(11) NOT NULL,
+                  PRIMARY KEY (`id_turniej`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="uzytkownicy">
+                CREATE TABLE `uzytkownicy` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `user` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `pass` varchar(20) COLLATE utf8mb4_polish_ci NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="zawodnicy">
+                CREATE TABLE `zawodnicy` (
+                  `id_zawodnicy` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_dyscyplina` int(11) NOT NULL,
+                  `imie` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `nazwisko` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `klub` varchar(50) COLLATE utf8mb4_polish_ci NOT NULL,
+                  `opis` varchar(250) COLLATE utf8mb4_polish_ci NOT NULL,
+                  PRIMARY KEY (`id_zawodnicy`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+            <pma:table name="zawodnicy_turn">
+                CREATE TABLE `zawodnicy_turn` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_turniej` int(11) NOT NULL,
+                  `id_zawodnicy` int(11) NOT NULL,
+                  `punkty` int(11) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Baza danych: 'zbd'
+    -->
+    <database name="zbd">
+        <!-- Tabela adres -->
+        <table name="adres">
+            <column name="id_adres">1</column>
+            <column name="kraj">Polska</column>
+            <column name="miasto">Prudnik</column>
+            <column name="kod_pocztowy">48-200</column>
+            <column name="ulica">ul. Łucznicza 1</column>
+        </table>
+        <table name="adres">
+            <column name="id_adres">2</column>
+            <column name="kraj">Polska</column>
+            <column name="miasto">Wrocław</column>
+            <column name="kod_pocztowy">50-123</column>
+            <column name="ulica">Politechniczna 1/1</column>
+        </table>
+        <table name="adres">
+            <column name="id_adres">3</column>
+            <column name="kraj">Polska</column>
+            <column name="miasto">Prudnik</column>
+            <column name="kod_pocztowy">48-200</column>
+            <column name="ulica">ul. Łucznicza 1</column>
+        </table>
+        <table name="adres">
+            <column name="id_adres">4</column>
+            <column name="kraj">Krajowo</column>
+            <column name="miasto">Miastewko</column>
+            <column name="kod_pocztowy">40-200</column>
+            <column name="ulica">Uliczna</column>
+        </table>
+        <table name="adres">
+            <column name="id_adres">5</column>
+            <column name="kraj">Polska</column>
+            <column name="miasto">Koniec Drogi</column>
+            <column name="kod_pocztowy">42-500</column>
+            <column name="ulica">Miodowa</column>
+        </table>
+        <!-- Tabela dyscyplina -->
+        <table name="dyscyplina">
+            <column name="id_dyscyplina">1</column>
+            <column name="dyscyplina">Szachy</column>
+        </table>
+        <table name="dyscyplina">
+            <column name="id_dyscyplina">2</column>
+            <column name="dyscyplina">Go</column>
+        </table>
+        <!-- Tabela komentatorzy -->
+        <table name="komentatorzy">
+            <column name="id_komentatorzy">1</column>
+            <column name="imie">Michał</column>
+            <column name="nazwisko">Szeller</column>
+        </table>
+        <!-- Tabela komentatorzy_turn -->
+        <table name="komentatorzy_turn">
+            <column name="id_turniej">1</column>
+            <column name="id_komentatorzy">1</column>
+        </table>
+        <!-- Tabela organizatorzy -->
+        <table name="organizatorzy">
+            <column name="id_organizatorzy">1</column>
+            <column name="id_adres">1</column>
+            <column name="nazwa">KS Obuwnik</column>
+            <column name="email">email@mail.com</column>
+            <column name="telefon">123456789</column>
+        </table>
+        <!-- Tabela organizatorzy_turn -->
+        <table name="organizatorzy_turn">
+            <column name="id_turniej">1</column>
+            <column name="id_organizatorzy">1</column>
+        </table>
+        <!-- Tabela ranking -->
+        <table name="ranking">
+            <column name="id">1</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="id_zawodnik">1</column>
+            <column name="punkty">6</column>
+        </table>
+        <table name="ranking">
+            <column name="id">2</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">2</column>
+            <column name="punkty">9</column>
+        </table>
+        <table name="ranking">
+            <column name="id">3</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="id_zawodnik">3</column>
+            <column name="punkty">2</column>
+        </table>
+        <table name="ranking">
+            <column name="id">4</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="id_zawodnik">4</column>
+            <column name="punkty">11</column>
+        </table>
+        <table name="ranking">
+            <column name="id">5</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">5</column>
+            <column name="punkty">5</column>
+        </table>
+        <table name="ranking">
+            <column name="id">6</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">6</column>
+            <column name="punkty">1</column>
+        </table>
+        <table name="ranking">
+            <column name="id">7</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">7</column>
+            <column name="punkty">13</column>
+        </table>
+        <table name="ranking">
+            <column name="id">8</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">8</column>
+            <column name="punkty">0</column>
+        </table>
+        <table name="ranking">
+            <column name="id">9</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="id_zawodnik">9</column>
+            <column name="punkty">12</column>
+        </table>
+        <table name="ranking">
+            <column name="id">10</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="id_zawodnik">10</column>
+            <column name="punkty">0</column>
+        </table>
+        <!-- Tabela turniej -->
+        <table name="turniej">
+            <column name="id_turniej">1</column>
+            <column name="nazwa">Turniej w Szachy</column>
+            <column name="data">2020-11-20 14:00:00</column>
+            <column name="id_adres">1</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="opis">opis</column>
+            <column name="zasady">zasady</column>
+            <column name="transmisja">Nie</column>
+            <column name="wpisowe">0</column>
+        </table>
+        <table name="turniej">
+            <column name="id_turniej">2</column>
+            <column name="nazwa">Turniej w Go</column>
+            <column name="data">2020-11-25 12:30:00</column>
+            <column name="id_adres">2</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="opis">opis</column>
+            <column name="zasady">zasady</column>
+            <column name="transmisja">Nie</column>
+            <column name="wpisowe">0</column>
+        </table>
+        <table name="turniej">
+            <column name="id_turniej">3</column>
+            <column name="nazwa">II Turniej w Szachy</column>
+            <column name="data">2020-11-28 20:15:00</column>
+            <column name="id_adres">4</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="opis">Opis</column>
+            <column name="zasady">Zasady</column>
+            <column name="transmisja">Tak</column>
+            <column name="wpisowe">5</column>
+        </table>
+        <table name="turniej">
+            <column name="id_turniej">4</column>
+            <column name="nazwa">II Turniej w GO</column>
+            <column name="data">2021-03-05 20:40:00</column>
+            <column name="id_adres">5</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="opis">Opis</column>
+            <column name="zasady">Zasady</column>
+            <column name="transmisja">Nie</column>
+            <column name="wpisowe">15</column>
+        </table>
+        <!-- Tabela uzytkownicy -->
+        <table name="uzytkownicy">
+            <column name="id">1</column>
+            <column name="user">patrick</column>
+            <column name="pass">12345</column>
+        </table>
+        <!-- Tabela zawodnicy -->
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">1</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="imie">Aleksander </column>
+            <column name="nazwisko">Piaseczny</column>
+            <column name="klub">Giants</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">2</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Hubert </column>
+            <column name="nazwisko">Jach</column>
+            <column name="klub">Giants</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">3</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="imie">Krzysztof</column>
+            <column name="nazwisko">Hymon</column>
+            <column name="klub">Enigmas</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">4</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="imie">Królik</column>
+            <column name="nazwisko">Królikowski</column>
+            <column name="klub">Trolls</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">5</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Szymon</column>
+            <column name="nazwisko">Bóbr</column>
+            <column name="klub">Enigmas</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">6</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Walter </column>
+            <column name="nazwisko">Laskoski</column>
+            <column name="klub">The Terrors</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">7</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Chwalibóg </column>
+            <column name="nazwisko">Graczyk</column>
+            <column name="klub">Yetis</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">8</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Lesław </column>
+            <column name="nazwisko">Skop</column>
+            <column name="klub">Monsters</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">9</column>
+            <column name="id_dyscyplina">2</column>
+            <column name="imie">Florentyn </column>
+            <column name="nazwisko">Osiecki</column>
+            <column name="klub">Gnomes</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <table name="zawodnicy">
+            <column name="id_zawodnicy">10</column>
+            <column name="id_dyscyplina">1</column>
+            <column name="imie">Bolesław </column>
+            <column name="nazwisko">Bochenek</column>
+            <column name="klub">Stars</column>
+            <column name="opis">OPIS</column>
+        </table>
+        <!-- Tabela zawodnicy_turn -->
+        <table name="zawodnicy_turn">
+            <column name="id">1</column>
+            <column name="id_turniej">3</column>
+            <column name="id_zawodnicy">1</column>
+            <column name="punkty">3</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">2</column>
+            <column name="id_turniej">1</column>
+            <column name="id_zawodnicy">1</column>
+            <column name="punkty">3</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">3</column>
+            <column name="id_turniej">3</column>
+            <column name="id_zawodnicy">3</column>
+            <column name="punkty">1</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">4</column>
+            <column name="id_turniej">3</column>
+            <column name="id_zawodnicy">4</column>
+            <column name="punkty">4</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">5</column>
+            <column name="id_turniej">4</column>
+            <column name="id_zawodnicy">7</column>
+            <column name="punkty">12</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">6</column>
+            <column name="id_turniej">4</column>
+            <column name="id_zawodnicy">9</column>
+            <column name="punkty">9</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">7</column>
+            <column name="id_turniej">2</column>
+            <column name="id_zawodnicy">5</column>
+            <column name="punkty">5</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">8</column>
+            <column name="id_turniej">2</column>
+            <column name="id_zawodnicy">9</column>
+            <column name="punkty">3</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">9</column>
+            <column name="id_turniej">1</column>
+            <column name="id_zawodnicy">4</column>
+            <column name="punkty">7</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">10</column>
+            <column name="id_turniej">2</column>
+            <column name="id_zawodnicy">2</column>
+            <column name="punkty">9</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">11</column>
+            <column name="id_turniej">1</column>
+            <column name="id_zawodnicy">3</column>
+            <column name="punkty">1</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">12</column>
+            <column name="id_turniej">4</column>
+            <column name="id_zawodnicy">6</column>
+            <column name="punkty">1</column>
+        </table>
+        <table name="zawodnicy_turn">
+            <column name="id">13</column>
+            <column name="id_turniej">2</column>
+            <column name="id_zawodnicy">7</column>
+            <column name="punkty">1</column>
+        </table>
+    </database>
+</pma_xml_export>
