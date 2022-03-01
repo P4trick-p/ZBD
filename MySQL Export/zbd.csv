@@ -8,7 +8,7 @@
 "1","Szachy"
 "2","Go"
 "id_komentatorzy","imie","nazwisko"
-"1","Michał","Szeller"
+"1","Michael","Sheller"
 "id_turniej","id_komentatorzy"
 "1","1"
 "id_organizatorzy","id_adres","nazwa","email","telefon"
