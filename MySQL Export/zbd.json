@@ -18,7 +18,7 @@
 }
 ,{"type":"table","name":"komentatorzy","database":"zbd","data":
 [
-{"id_komentatorzy":"1","imie":"Michał","nazwisko":"Szeller"}
+{"id_komentatorzy":"1","imie":"Michael","nazwisko":"Sheller"}
 ]
 }
 ,{"type":"table","name":"komentatorzy_turn","database":"zbd","data":
